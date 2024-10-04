@@ -24,7 +24,7 @@ class Vampire {
     let vampGenerations = 0;
     let currVamp = this;
 
-    while(currVamp.creator) {
+    while (currVamp.creator) {
       currVamp = currVamp.creator;
       vampGenerations++;
     }
@@ -34,7 +34,7 @@ class Vampire {
 
   // Returns true if this vampire is more senior than the other vampire. (Who is closer to the original vampire)
   isMoreSeniorThan(vampire) {
-    if(this.numberOfVampiresFromOriginal < vampire.numberOfVampiresFromOriginal) {
+    if (this.numberOfVampiresFromOriginal < vampire.numberOfVampiresFromOriginal) {
       return true;
     }
     return false;
@@ -49,7 +49,7 @@ class Vampire {
   // * when comparing Ansel and Andrew, Ansel is the closest common anscestor.
   closestCommonAncestor(vampire) {
     //if its the same vamp; quick exit
-    if(this === vampire){
+    if (this === vampire) {
       return this;
     }
 
@@ -58,21 +58,21 @@ class Vampire {
     const thisVampireAncestors = [this];
     const inputVampireAncestors = [vampire];
 
-    //check all ancestors plus curr vamp and log them for this vamp and input vamp if they have a match output 
+    //check all ancestors plus curr vamp and log them for this vamp and input vamp if they have a match output
     //loop through the ancestors of this vamp
-    while(thisVampCurr.creator) {
+    while (thisVampCurr.creator) {
       thisVampireAncestors.push(thisVampCurr.creator);
       thisVampCurr = thisVampCurr.creator;
     }
 
-    while(inputVampCurr.creator) {
+    while (inputVampCurr.creator) {
       inputVampireAncestors.push(inputVampCurr.creator);
       inputVampCurr = inputVampCurr.creator;
     }
 
     //loop through this vamps ancestors and check if input vamp includes it
-    for(const ancestor of thisVampireAncestors){
-      if(inputVampireAncestors.includes(ancestor)){
+    for (const ancestor of thisVampireAncestors) {
+      if (inputVampireAncestors.includes(ancestor)) {
         return ancestor;
       }
     }
@@ -80,4 +80,3 @@ class Vampire {
 }
 
 module.exports = Vampire;
-
